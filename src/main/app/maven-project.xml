@@ -22,7 +22,7 @@ http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/
     </flow>
     <flow name="retrieveFlights">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/flights" doc:name="HTTP"/>
-        <logger message="#['Executing flow retrieveFlights flow']" level="INFO" doc:name="Logger"/>
+        <logger message="#['Executing flow retrieveFlights']" level="INFO" doc:name="Logger"/>
         <db:select config-ref="Derby_Configuration" doc:name="Database">
             <db:parameterized-query><![CDATA[SELECT * FROM FLIGHTS]]></db:parameterized-query>
         </db:select>
@@ -31,7 +31,7 @@ http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/
     </flow>
     <flow name="logFlights">
         <jms:inbound-endpoint queue="flights" connector-ref="Active_MQ" doc:name="JMS"/>
-        <logger message="#['Executing flow logFlights flow']" level="INFO" doc:name="Logger"/>
+        <logger message="#['Executing flow logFlights']" level="INFO" doc:name="Logger"/>
         <logger message="#[message.payload]" level="INFO" doc:name="Logger"/>
     </flow>
 </mule>
